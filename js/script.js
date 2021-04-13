@@ -4,7 +4,6 @@ promessa.then(renderizarFilmes);
 function renderizarFilmes(filmes) {
 
     const arrayFilmes = filmes.data;
-    console.log(arrayFilmes);
     const conteudo = document.querySelector(".movies");
     
     for (let i = 0; i < arrayFilmes.length; i++) {
@@ -12,7 +11,7 @@ function renderizarFilmes(filmes) {
         <div class="movie">
             <img src="${arrayFilmes[i].imagem}">
             <div class="title">${arrayFilmes[i].titulo}</div>
-            <button onclick="comprar(${arrayFilmes[i].id})">
+            <button onclick="comprar(${arrayFilmes[i].id}, '${arrayFilmes[i].titulo}')">
             Comprar
             <ion-icon name="cart-outline"></ion-icon>
             </button>
@@ -23,10 +22,12 @@ function renderizarFilmes(filmes) {
 
 let nome;
 let assentos;
+let filmeComprado;
 
-function comprar(idFilme) {
+function comprar(idFilme, tituloFilme) {
     nome = prompt("Qual seu nome?");
     assentos = prompt("Quantos ingressos você deseja?");
+    filmeComprado = tituloFilme;
 
     const dados = {nome: nome, quantidade: assentos};
 
@@ -40,5 +41,5 @@ function tratarErro() {
 }
 
 function tratarAcerto() {
-    alert(`${nome} comprou ${assentos} ingressos para o filme!`);
+    alert(`${nome} comprou ${assentos} ingressos para o filme ${filmeComprado}!`);
 }
