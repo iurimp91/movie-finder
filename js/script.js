@@ -5,13 +5,18 @@ function renderizarFilmes(filmes) {
 
     const arrayFilmes = filmes.data;
     const conteudo = document.querySelector(".movies");
-    
+    const arrayTitulos = [];
+
+    for (let i = 0; i < arrayFilmes.length; i++) {
+        arrayTitulos[i] = "`" + arrayFilmes[i].titulo + "`";
+    }
+
     for (let i = 0; i < arrayFilmes.length; i++) {
         conteudo.innerHTML += `
         <div class="movie">
             <img src="${arrayFilmes[i].imagem}">
             <div class="title">${arrayFilmes[i].titulo}</div>
-            <button onclick="comprar(${arrayFilmes[i].id}, '${arrayFilmes[i].titulo}')">
+            <button onclick="comprar(${arrayFilmes[i].id}, ${arrayTitulos[i]})">
             Comprar
             <ion-icon name="cart-outline"></ion-icon>
             </button>
